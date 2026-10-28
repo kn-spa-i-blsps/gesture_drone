@@ -1,0 +1,10 @@
+venv/
+.cache/
+__pycache__/
+*.pyc
+logs/
+mav.parm
+mav.tlog
+mav.tlog.raw
+*.tlog
+*.BIN

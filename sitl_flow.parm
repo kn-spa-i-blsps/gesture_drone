@@ -1,0 +1,27 @@
+# ArduCopter 4.7.0 SITL: symulowany optical flow + dalmierz, bez GPS i bez kompasu
+SIM_FLOW_ENABLE 1
+FLOW_TYPE 10
+RNGFND1_TYPE 100
+RNGFND1_ORIENT 25
+# 4.7: zakres i preswit w metrach (w 4.6 byly RNGFND1_MIN_CM / MAX_CM / GNDCLEAR w cm)
+RNGFND1_MIN 0.05
+RNGFND1_MAX 5.0
+# preswit dalmierza nad podloga jak na prawdziwym dronie: w SITL srodek masy lezy na ziemi,
+# wiec bez przesuniecia czujnik na ziemi mierzy 0 (< MIN) -> flow bez wysokosci, brak arm w GUIDED
+SIM_SONAR_POS_Z -0.08
+RNGFND1_GNDCLR 0.07
+# plaska podloga: bez tego MAVProxy laduje kafle SRTM dla pozycji SITL (CMAC) i symulowany
+# dalmierz liczy wysokosc wzgledem SRTM (~2 m powyzej domu SITL) -> current_distance 0 do ~2 m
+SIM_TERRAIN 0
+GPS1_TYPE 0
+SIM_GPS1_ENABLE 0
+AHRS_EKF_TYPE 3
+EK3_SRC1_POSXY 0
+EK3_SRC1_VELXY 5
+EK3_SRC1_POSZ 2
+EK3_SRC1_VELZ 0
+COMPASS_ENABLE 0
+COMPASS_USE 0
+EK3_SRC1_YAW 0
+GUID_TIMEOUT 1
+FS_EKF_ACTION 1

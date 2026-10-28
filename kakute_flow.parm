@@ -1,0 +1,41 @@
+# ArduCopter 4.7.0 (1511f271) KakuteH7Mini: optical flow (UART4/R4) + VL53L1X (I2C), bez GPS i bez kompasu
+# Odpowiednik sitl_flow.parm dla prawdziwego drona. Nazwy parametrow wg 4.7.0 (zakresy dalmierza w metrach).
+
+# --- optical flow: Holybro PMW3901 (wersja UART, format CX-OF, 19200) na padzie R4 = UART4 = SERIAL4 ---
+# TX modulu -> R4; modul tylko nadaje, T4 niepodlaczony
+SERIAL4_PROTOCOL 18
+SERIAL4_BAUD 19
+FLOW_TYPE 4
+# kierunek czujnika - sprawdzic na dronie (centystopnie, wg strzalki na module)
+FLOW_ORIENT_YAW 0
+FLOW_FXSCALER 0
+FLOW_FYSCALER 0
+
+# --- VL53L1X na I2C1 (wspolne z barometrem 0x76; VL53L1X ma 0x29 = 41) ---
+RNGFND1_TYPE 16
+RNGFND1_ADDR 41
+RNGFND1_ORIENT 25
+RNGFND1_MIN 0.05
+# tryb long: do ok. 4 m (na stoisku lot do 1.6 m)
+RNGFND1_MAX 4.0
+# odczyt dalmierza, gdy dron stoi na podlodze - ZMIERZYC (DISTANCE_SENSOR na ziemi) i wpisac
+RNGFND1_GNDCLR 0.05
+
+# --- bez GPS i kompasu ---
+GPS1_TYPE 0
+COMPASS_ENABLE 0
+COMPASS_USE 0
+# bez GPS teren jest bezuzyteczny, a zapytania o kafle zajmuja lacze ELRS
+TERRAIN_ENABLE 0
+
+# --- EKF3: XY z optical flow, Z z dalmierza, bez yaw z kompasu ---
+AHRS_EKF_TYPE 3
+EK3_SRC1_POSXY 0
+EK3_SRC1_VELXY 5
+EK3_SRC1_POSZ 2
+EK3_SRC1_VELZ 0
+EK3_SRC1_YAW 0
+
+# --- GUIDED / failsafe (jak w SITL) ---
+GUID_TIMEOUT 1
+FS_EKF_ACTION 1
