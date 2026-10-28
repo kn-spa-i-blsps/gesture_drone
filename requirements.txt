@@ -1,0 +1,15 @@
+
+# OAK-D: API 2.x (XLinkOut, getOutputQueue). depthai 3.x ma niekompatybilne API.
+depthai>=2.28,<3
+ 
+# Detekcja dloni (mp.solutions.hands). Nowsze wersje zmieniaja API i wymagania numpy.
+mediapipe==0.10.14
+ 
+# mediapipe 0.10.14 i opencv z tej linii wymagaja numpy 1.x
+numpy>=1.24,<2
+ 
+# Okna podgladu (imshow) - wersja z GUI, nie -headless
+opencv-python>=4.8,<4.11
+ 
+# Komunikacja z ArduPilotem
+pymavlink>=2.4.41
